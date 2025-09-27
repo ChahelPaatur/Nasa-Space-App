@@ -1,0 +1,143 @@
+# Set the file path
+$folderPath = "C:\Users\skyla\test"
+$filePath = "$folderPath\test.html"
+
+# Create the folder if it doesn't exist
+if (-not (Test-Path $folderPath)) {
+    New-Item -ItemType Directory -Path $folderPath
+}
+
+# Improved HTML content (cleaner layout and better design)
+$html = @"
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>AI Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #e6f0ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background-color: #354a77;
+      color: white;
+      width: 100%;
+      text-align: center;
+      padding: 2rem 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      padding: 3rem 1rem;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      justify-items: center;
+    }
+
+    .button {
+      background-color: #ffffff;
+      border: 2px solid #354a77;
+      color: #354a77;
+      padding: 1rem 1.5rem;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 250px;
+    }
+
+    .button:hover {
+      background-color: #354a77;
+      color: #ffffff;
+      transform: translateY(-3px);
+    }
+
+    .welcome-box {
+      background-color: #d6e0f5;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .welcome-box h2 {
+      margin-top: 0;
+      font-size: 2rem;
+    }
+
+    .welcome-box p {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      .button {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .welcome-box h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AI Dashboard</h1>
+  </header>
+
+  <div class="dashboard">
+    <div class="welcome-box">
+      <h2>Welcome!</h2>
+      <p>Select an action to begin working with your machine learning pipeline.</p>
+    </div>
+
+    <div class="button-grid">
+      <button class="button" onclick="navigate('ModelSelection')">Model Selection</button>
+      <button class="button" onclick="navigate('Preprocessing')">Data Preprocessing</button>
+      <button class="button" onclick="navigate('Results')">View Results</button>
+      <button class="button" onclick="navigate('Settings')">Settings</button>
+    </div>
+  </div>
+
+  <script>
+    function navigate(destination) {
+      alert('Navigating to: ' + destination);
+      // Replace with real navigation or backend logic
+    }
+  </script>
+
+</body>
+</html>
+"@
+
+# Write the HTML content to file (overwrite if exists)
+Set-Content -Path $filePath -Value $html -Force
+
+# Open it in the default browser
+Start-Process $filePath
