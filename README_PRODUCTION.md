@@ -28,7 +28,7 @@ Model Saving
 The trained models were saved using standard TensorFlow/Keras workflows:
 
 # Saving a trained model
-model.save("exoplanet_model.h5")
+model.save("best_model.h5")
 
 # Loading the saved model
 from tensorflow.keras.models import load_model
